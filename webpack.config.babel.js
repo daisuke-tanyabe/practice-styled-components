@@ -2,7 +2,7 @@ import glob from 'glob';
 
 const entry = glob.sync('./src/**/*.?(js|jsx)').reduce((previous, current) => {
   const key = current.replace(/^\.\/src\//, '').replace(/\.jsx?$/, '');
-  previous[key] = current;
+  previous[key] = ['babel-polyfill', current];
 
   return previous;
 }, {});
