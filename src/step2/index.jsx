@@ -2,12 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader';
 
-import base from './base';
-import App from './container/App';
+import styles from './styles';
+import Container from './components/Container';
+import Header from './components/Header';
+
+const App = () => {
+  styles();
+  return (
+    <Container>
+      <Header>Header</Header>
+    </Container>
+  );
+};
 
 hot(module)(App);
 
 ReactDOM.render(
-  <App base={base} />,
+  <App />,
   document.getElementById('app')
 );
