@@ -15,6 +15,7 @@ module.exports = {
     filename: '[name].bundle.js',
     publicPath: '/' // この設定記述がなかったのでhot-loaderが動かなかった？
   },
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: `${__dirname}/src`,
     port: '8080',
