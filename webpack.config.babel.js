@@ -1,6 +1,9 @@
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import WriteFilePlugin from 'write-file-webpack-plugin';
+
 import glob from 'glob';
 
-const entry = glob.sync('./src/step[0-9]/index.?(js|jsx)').reduce((previous, current) => {
+const entry = glob.sync('./src/js/**/index.?(js|jsx)').reduce((previous, current) => {
   const key = current.replace(/^\.\/src\//, '').replace(/\.jsx?$/, '');
   previous[key] = ['babel-polyfill', current];
 
@@ -12,12 +15,12 @@ module.exports = {
   entry,
   output: {
     path: `${__dirname}/dist`,
-    filename: '[name].bundle.js',
+    filename: 'assets/[name].bundle.js',
     publicPath: '/' // この設定記述がなかったのでhot-loaderが動かなかった？
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: `${__dirname}/src`,
+    contentBase: `${__dirname}/dist`,
     port: '8080',
     publicPath: '/',
     historyApiFallback: true,
@@ -31,6 +34,17 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        context: 'src/html',
+        from: '**/*'
+      }
+    ]),
+    new WriteFilePlugin({
+      test: /\.html$/
+    })
+  ],
   resolve: {
     extensions: ['.js', '.jsx']
   }
