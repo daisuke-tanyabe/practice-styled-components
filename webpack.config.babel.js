@@ -1,6 +1,6 @@
 import glob from 'glob';
 
-const entry = glob.sync('./src/**/*.?(js|jsx)').reduce((previous, current) => {
+const entry = glob.sync('./src/step[0-9]/index.?(js|jsx)').reduce((previous, current) => {
   const key = current.replace(/^\.\/src\//, '').replace(/\.jsx?$/, '');
   previous[key] = ['babel-polyfill', current];
 
@@ -12,13 +12,14 @@ module.exports = {
   entry,
   output: {
     path: `${__dirname}/dist`,
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
+    publicPath: '/' // この設定記述がなかったのでhot-loaderが動かなかった？
   },
   devServer: {
     contentBase: `${__dirname}/src`,
-    publicPath: '/',
     port: '8080',
-    historyApiFallback: true
+    publicPath: '/',
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -33,5 +34,3 @@ module.exports = {
     extensions: ['.js', '.jsx']
   }
 };
-
-console.log(entry);
