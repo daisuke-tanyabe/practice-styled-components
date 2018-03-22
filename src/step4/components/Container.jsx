@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-background: ${({constant}) => constant.COLOR.PAPAYAWHIP};
+background: #eeeeee;
 height: 100vh;
 `;
 
