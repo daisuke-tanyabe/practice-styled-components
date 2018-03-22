@@ -1,5 +1,5 @@
 export default {
   COLOR: {
-    PAPAYAWHIP: 'papayawhip'
+    RED: 'red',
   }
 }

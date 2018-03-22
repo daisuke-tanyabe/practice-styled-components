@@ -11,8 +11,5 @@
       },
       "useBuiltIns": true
     }]
-  ],
-  "plugins": [
-    "react-hot-loader/babel"
   ]
 }
