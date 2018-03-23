@@ -2,7 +2,11 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import WriteFilePlugin from 'write-file-webpack-plugin';
 
 import glob from 'glob';
+import rimraf from 'rimraf';
 
+const DEST_DIR = `${__dirname}/dest`;
+
+const mode = process.env.NODE_ENV;
 const entry = glob.sync('./src/js/**/index.?(js|jsx)').reduce((previous, current) => {
   const key = current.replace(/^\.\/src\//, '').replace(/\.jsx?$/, '');
   previous[key] = ['babel-polyfill', current];
@@ -10,20 +14,38 @@ const entry = glob.sync('./src/js/**/index.?(js|jsx)').reduce((previous, current
   return previous;
 }, {});
 
+function deleteDirectory(directory) {
+  // 同期処理にしないとダメかも
+  rimraf.sync(directory);
+  console.log(`\nDeleted: ${directory}`);
+}
+
+class MyPlugin {
+  apply(compiler) {
+    if (compiler.hooks) {
+      // v4 対応
+      compiler.hooks.watchClose.tap({ name: 'MyPlugin' }, () => deleteDirectory(DEST_DIR));
+    } else {
+      // v3 対応
+      compiler.plugin('watchClose', () => deleteDirectory(DEST_DIR));
+    }
+  }
+}
+
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode,
   entry,
   output: {
-    path: `${__dirname}/dist`,
+    path: DEST_DIR,
     filename: 'assets/[name].bundle.js',
     publicPath: '/' // この設定記述がなかったのでhot-loaderが動かなかった？
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: `${__dirname}/dist`,
+    contentBase: DEST_DIR,
     port: '8080',
     publicPath: '/',
-    historyApiFallback: true,
+    historyApiFallback: true
   },
   module: {
     rules: [
@@ -43,7 +65,8 @@ module.exports = {
     ]),
     new WriteFilePlugin({
       test: /\.html$/
-    })
+    }),
+    new MyPlugin()
   ],
   resolve: {
     extensions: ['.js', '.jsx']
