@@ -7,7 +7,8 @@ import rimraf from 'rimraf';
 const DEST_DIR = `${__dirname}/dest`;
 
 const mode = process.env.NODE_ENV;
-const entry = glob.sync('./src/js/**/index.?(js|jsx)').reduce((previous, current) => {
+
+const entry = glob.sync('./src/js/step[0-9]/index.?(js|jsx)').reduce((previous, current) => {
   const key = current.replace(/^\.\/src\//, '').replace(/\.jsx?$/, '');
   previous[key] = ['babel-polyfill', current];
 
@@ -51,8 +52,11 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
+        use: [
+          'babel-loader',
+          'stylelint-custom-processor-loader'
+        ],
         exclude: '/node_modules/',
-        use: ['babel-loader']
       }
     ]
   },
