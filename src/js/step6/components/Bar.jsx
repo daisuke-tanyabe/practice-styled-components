@@ -10,8 +10,8 @@ const Bar = ({ className, children }) => {
 };
 
 const StyledBar = styled(Bar)`
-background: #3eacff;
-color: #fff;
+  background: #3eacff;
+  color: #fff;
 `;
 
 
