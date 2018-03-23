@@ -53,7 +53,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: [
-          'babel-loader',
+          'babel-loader?cacheDirectory',
           'stylelint-custom-processor-loader'
         ],
         exclude: '/node_modules/',
@@ -64,7 +64,8 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         context: 'src/html',
-        from: '**/*'
+        from: '**/*',
+        cache: true
       }
     ]),
     new WriteFilePlugin({
@@ -74,5 +75,6 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx']
-  }
+  },
+  cache: true
 };

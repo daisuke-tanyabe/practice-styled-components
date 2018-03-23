@@ -9,5 +9,6 @@
     "indentation": [2, {
       "except": ["value"]
     }]
-  }
+  },
+  "cache": true
 }
