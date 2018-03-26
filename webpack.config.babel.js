@@ -54,7 +54,8 @@ module.exports = {
         test: /\.jsx?$/,
         use: [
           'babel-loader?cacheDirectory',
-          'stylelint-custom-processor-loader'
+          'stylelint-custom-processor-loader',
+          'eslint-loader'
         ],
         exclude: '/node_modules/',
       }
