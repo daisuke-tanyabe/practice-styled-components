@@ -10,7 +10,7 @@ const mode = process.env.NODE_ENV;
 
 const entry = glob.sync('./src/js/step[0-9]/index.?(js|jsx)').reduce((previous, current) => {
   const key = current.replace(/^\.\/src\//, '').replace(/\.jsx?$/, '');
-  previous[key] = ['babel-polyfill', current];
+  previous[key] = current;
 
   return previous;
 }, {});
