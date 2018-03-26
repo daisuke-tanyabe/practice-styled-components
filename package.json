@@ -46,6 +46,7 @@
     "write-file-webpack-plugin": "^4.2.0"
   },
   "dependencies": {
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0",

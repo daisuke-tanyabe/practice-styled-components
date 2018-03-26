@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  background: #eeeeee;
+  background: #eee;
   height: 100vh;
 `;
 

@@ -5,13 +5,11 @@ import { hot } from 'react-hot-loader';
 import Container from './components/Container';
 import Header from './components/Header';
 
-const App = () => {
-  return (
-    <Container>
-      <Header>Header</Header>
-    </Container>
-  );
-};
+const App = () => (
+  <Container>
+    <Header>Header</Header>
+  </Container>
+);
 
 hot(module)(App);
 

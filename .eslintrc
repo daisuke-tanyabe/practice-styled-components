@@ -14,6 +14,7 @@
   },
   "rules": {
     "comma-dangle": ["error", "only-multiline"],
+    "no-shadow": "off",
     "react/jsx-filename-extension": ["warn", {
       "extensions": [".js", ".jsx"]
     }]

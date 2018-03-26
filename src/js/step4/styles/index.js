@@ -6,4 +6,4 @@ const base = () => injectGlobal`
   ${reset}
 `;
 
-export { base };
+export default base;

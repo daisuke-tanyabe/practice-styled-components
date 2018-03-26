@@ -77,11 +77,13 @@ const reset = css`
     vertical-align: baseline;
     background: transparent;
   }
-  /*行の高さをフォントサイズと同じにしています*/
+
+  /* 行の高さをフォントサイズと同じにしています */
   body {
     line-height: 1;
   }
-  /*新規追加要素のデフォルトはすべてインライン要素になっているので、section要素などをブロック要素へ変更しています*/
+
+  /* 新規追加要素のデフォルトはすべてインライン要素になっているので、section要素などをブロック要素へ変更しています */
   article,
   aside,
   details,
@@ -94,28 +96,33 @@ const reset = css`
   section {
     display: block;
   }
-  /*nav要素内ulのマーカー（行頭記号）を表示しないようにしています*/
-  /*nav ul {
+
+  /* nav要素内ulのマーカー（行頭記号）を表示しないようにしています */
+
+  /* nav ul {
       list-style:none;
-  }*/
+  } */
   ol,
   ul {
     list-style: none;
   }
-  /*引用符の表示が出ないようにしています*/
+
+  /* 引用符の表示が出ないようにしています */
   blockquote,
   q {
     quotes: none;
   }
-  /*blockquote要素、q要素の前後にコンテンツを追加しないように指定しています*/
-  blockquote:before,
-  blockquote:after,
-  q:before,
-  q:after {
+
+  /* blockquote要素、q要素の前後にコンテンツを追加しないように指定しています */
+  blockquote::before,
+  blockquote::after,
+  q::before,
+  q::after {
     content: '';
     content: none;
   }
-  /*a要素のフォントサイズなどをリセットしフォントの縦方向の揃え位置を親要素のベースラインに揃えるようにしています*/
+
+  /* a要素のフォントサイズなどをリセットしフォントの縦方向の揃え位置を親要素のベースラインに揃えるようにしています */
   a {
     margin: 0;
     padding: 0;
@@ -123,60 +130,69 @@ const reset = css`
     vertical-align: baseline;
     background: transparent;
   }
-  /* ins要素のデフォルトをセットし、色を変える場合はここで変更できるようにしています */
+
+  /*  ins要素のデフォルトをセットし、色を変える場合はここで変更できるようにしています  */
   ins {
     background-color: #ff9;
     color: #000;
     text-decoration: none;
   }
-  /* mark要素のデフォルトをセットし、色やフォントスタイルを変える場合はここで変更できるようにしています
-  また、mark要素とは、文書内の検索結果で該当するフレーズをハイライトして、目立たせる際に使用するようです。*/
+
+  /*  mark要素のデフォルトをセットし、色やフォントスタイルを変える場合はここで変更できるようにしています
+  また、mark要素とは、文書内の検索結果で該当するフレーズをハイライトして、目立たせる際に使用するようです。 */
   mark {
     background-color: #ff9;
     color: #000;
     font-style: italic;
     font-weight: bold;
   }
-  /*テキストに打ち消し線が付くようにしています*/
+
+  /* テキストに打ち消し線が付くようにしています */
   del {
     text-decoration: line-through;
   }
-  /*IEではデフォルトで点線を下線表示する設定ではないので、下線がつくようにしています
-  また、マウスオーバー時にヘルプカーソルの表示が出るようにしています*/
+
+  /* IEではデフォルトで点線を下線表示する設定ではないので、下線がつくようにしています
+  また、マウスオーバー時にヘルプカーソルの表示が出るようにしています */
   abbr[title],
   dfn[title] {
     border-bottom: 1px dotted;
     cursor: help;
   }
-  /*隣接するセルのボーダーを重ねて表示し、間隔を0に指定しています*/
+
+  /* 隣接するセルのボーダーを重ねて表示し、間隔を0に指定しています */
   table {
     border-collapse: collapse;
     border-spacing: 0;
   }
-  /*水平罫線のデフォルトである立体的な罫線を見えなくしています*/
+
+  /* 水平罫線のデフォルトである立体的な罫線を見えなくしています */
   hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;
   }
-  /*縦方向の揃え位置を中央揃えに指定しています*/
+
+  /* 縦方向の揃え位置を中央揃えに指定しています */
   input,
   select {
     vertical-align: middle;
   }
-  /*画像を縦に並べた時に余白が出ないように*/
+
+  /* 画像を縦に並べた時に余白が出ないように */
   img {
     vertical-align: top;
     font-size: 0;
     line-height: 0;
   }
-  /*box-sizingを全ブラウザに対応*/
+
+  /* box-sizingを全ブラウザに対応 */
   *,
-  *:before,
-  *:after {
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
 `;

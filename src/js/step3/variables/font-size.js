@@ -4,4 +4,4 @@ export default {
     BASE: '13px',
     LARGE: '16px'
   }
-}
+};
